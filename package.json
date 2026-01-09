@@ -1,0 +1,48 @@
+{
+  "name": "@eliason/github-issues-claude-plugin",
+  "version": "1.0.0",
+  "description": "GitHub Issues workflow integration for Claude Code - zero-token scripts, manual issue management",
+  "main": "plugin.json",
+  "bin": {
+    "gh-issues-install": "./install.sh",
+    "gh-issues-uninstall": "./uninstall.sh"
+  },
+  "scripts": {
+    "install-local": "./install.sh --local",
+    "install-global": "./install.sh --global",
+    "uninstall": "./uninstall.sh",
+    "test": "bash scripts/test-runner.sh"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-plugin",
+    "github",
+    "issues",
+    "workflow",
+    "project-management",
+    "zero-token"
+  ],
+  "author": "Ian Eliason",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ieliason/github-issues-claude-plugin"
+  },
+  "homepage": "https://github.com/ieliason/github-issues-claude-plugin#readme",
+  "bugs": {
+    "url": "https://github.com/ieliason/github-issues-claude-plugin/issues"
+  },
+  "peerDependencies": {
+    "claude-code": ">=1.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "claudePlugin": {
+    "version": "1.0",
+    "type": "workflow",
+    "category": "project-management",
+    "tokenOptimized": true,
+    "subscriptionOnly": true
+  }
+}

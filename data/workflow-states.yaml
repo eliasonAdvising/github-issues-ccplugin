@@ -1,0 +1,35 @@
+# Issue Workflow State Transitions
+
+start_work:
+  remove_labels:
+    - "claude-todo"
+    - "blocked"
+  add_labels:
+    - "in-progress"
+  actions:
+    - create_branch
+    - add_comment
+
+complete_work:
+  remove_labels:
+    - "in-progress"
+  add_labels:
+    - "needs-review"
+  actions:
+    - create_pr
+    - add_comment
+
+block_issue:
+  remove_labels:
+    - "in-progress"
+    - "claude-todo"
+  add_labels:
+    - "blocked"
+  actions:
+    - add_comment_required
+
+unblock_issue:
+  remove_labels:
+    - "blocked"
+  add_labels:
+    - "claude-todo"

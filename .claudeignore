@@ -1,0 +1,8 @@
+# Don't load these into Claude context
+node_modules/
+.git/
+*.log
+backups/
+test-output/
+docs/contributing.md
+LICENSE

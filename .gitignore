@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Backups
+*.backup
+*.bak
+backups/
+
+# Test outputs
+test-output/
+*.test.log
+
+# User config overrides
+config.local.yaml
+*.local.yaml

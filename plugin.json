@@ -1,0 +1,57 @@
+{
+  "name": "github-issues",
+  "version": "1.0.0",
+  "description": "GitHub Issues integration - zero-token scripts, manual workflow",
+  "author": "Ian Eliason",
+
+  "requirements": {
+    "github-cli": {
+      "command": "gh",
+      "version": ">=2.0.0",
+      "install": "https://cli.github.com/",
+      "check": "gh --version"
+    }
+  },
+
+  "tokenBudget": {
+    "estimated": {
+      "skills": 250,
+      "agents": 60,
+      "commands": 150,
+      "total": 460
+    },
+    "optimization": "Scripts handle all operations (0 tokens), references to YAML reduce duplication"
+  },
+
+  "configuration": {
+    "authMethod": "subscription",
+    "requiresApiKey": false,
+    "manual": {
+      "issueCreation": true,
+      "issueManagement": "github-web-or-mobile"
+    }
+  },
+
+  "components": {
+    "skills": ["skills/github-integration"],
+    "agents": ["agents/issue-manager.md"],
+    "commands": [
+      "commands/list-issues.md",
+      "commands/work-issue.md",
+      "commands/close-issue.md"
+    ],
+    "data": [
+      "data/thresholds.yaml",
+      "data/default-labels.yaml",
+      "data/workflow-states.yaml"
+    ]
+  },
+
+  "activation": {
+    "auto": true,
+    "triggers": [
+      "GitHub repository detected (.git directory)",
+      "User mentions 'issue' or 'GitHub'"
+    ]
+  }
+}

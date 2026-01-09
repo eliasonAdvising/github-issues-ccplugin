@@ -1,0 +1,40 @@
+# Token and Size Thresholds
+# Used by file-manager skill for validation
+
+component_limits:
+  claude_md:
+    ideal: 60
+    warning: 300
+    error: 500
+
+  commands:
+    target: 50
+    error: 80
+
+  agents:
+    target: 60
+    warning: 70
+    error: 100
+
+  skills:
+    minimum: 100
+    ideal_min: 100
+    ideal_max: 300
+    error: 400
+
+token_budget:
+  total_available: 4000
+  system_usage: 50
+  user_budget: 150
+
+  plugin_targets:
+    skills: 250
+    agents: 60
+    commands: 150
+    total: 460
+
+defaults:
+  issue_list_limit: 50
+  branch_prefix: "feature"
+  auto_comment: true
+  require_pr: true
