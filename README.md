@@ -32,11 +32,11 @@ Zero-token GitHub Issues workflow integration using deterministic scripts. Desig
 
 ```bash
 # Install globally (available in all projects)
-npm install -g @eliason/github-issues-claude-plugin
+npm install -g github-issues-claude-plugin
 
 # Or install locally in a project
 cd your-project
-npm install --save-dev @eliason/github-issues-claude-plugin
+npm install --save-dev github-issues-claude-plugin
 ```
 
 The plugin automatically installs to the correct Claude Code plugin directory.
@@ -249,7 +249,7 @@ chmod +x ~/.claude/plugins/github-issues/skills/github-integration/scripts/*.sh
 ```bash
 # Remove plugin files, then uninstall npm package
 gh-issues-uninstall
-npm uninstall -g @eliason/github-issues-claude-plugin
+npm uninstall -g github-issues-claude-plugin
 ```
 
 ## Contributing
