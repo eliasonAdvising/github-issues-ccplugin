@@ -8,6 +8,7 @@
     "gh-issues-uninstall": "./uninstall.sh"
   },
   "scripts": {
+    "postinstall": "node ./scripts/postinstall.js",
     "install-local": "./install.sh --local",
     "install-global": "./install.sh --global",
     "uninstall": "./uninstall.sh",
