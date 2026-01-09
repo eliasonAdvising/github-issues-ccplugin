@@ -3,26 +3,40 @@
 
 set -e
 
-PLUGIN_NAME="github-issues"
-
 echo "🗑️  Uninstalling GitHub Issues Plugin"
 echo ""
 
-# Find installations
-GLOBAL_PATH="$HOME/.claude/plugins/$PLUGIN_NAME"
-LOCAL_PATH="./.claude/plugins/$PLUGIN_NAME"
+# Files to remove
+COMMANDS=(
+    "list-issues.md"
+    "work-issue.md"
+    "close-issue.md"
+)
+
+AGENTS=(
+    "issue-manager.md"
+)
+
+DATA_FILES=(
+    "thresholds.yaml"
+    "default-labels.yaml"
+    "workflow-states.yaml"
+)
+
+# Check both global and local locations
+LOCATIONS=(
+    "$HOME/.claude"
+    "./.claude"
+)
 
 FOUND=0
 
-if [ -d "$GLOBAL_PATH" ]; then
-    echo "Found global installation: $GLOBAL_PATH"
-    FOUND=1
-fi
-
-if [ -d "$LOCAL_PATH" ]; then
-    echo "Found local installation: $LOCAL_PATH"
-    FOUND=1
-fi
+for LOC in "${LOCATIONS[@]}"; do
+    if [ -d "$LOC/skills/github-integration" ]; then
+        echo "Found installation in: $LOC"
+        FOUND=1
+    fi
+done
 
 if [ $FOUND -eq 0 ]; then
     echo "No installations found."
@@ -30,7 +44,7 @@ if [ $FOUND -eq 0 ]; then
 fi
 
 echo ""
-read -p "Remove all found installations? (y/n) " -n 1 -r
+read -p "Remove plugin files? (y/n) " -n 1 -r
 echo ""
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -38,16 +52,37 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     exit 0
 fi
 
-# Remove installations
-if [ -d "$GLOBAL_PATH" ]; then
-    rm -rf "$GLOBAL_PATH"
-    echo "✓ Removed global installation"
-fi
+for LOC in "${LOCATIONS[@]}"; do
+    # Remove commands
+    for cmd in "${COMMANDS[@]}"; do
+        if [ -f "$LOC/commands/$cmd" ]; then
+            rm "$LOC/commands/$cmd"
+            echo "✓ Removed $LOC/commands/$cmd"
+        fi
+    done
 
-if [ -d "$LOCAL_PATH" ]; then
-    rm -rf "$LOCAL_PATH"
-    echo "✓ Removed local installation"
-fi
+    # Remove agents
+    for agent in "${AGENTS[@]}"; do
+        if [ -f "$LOC/agents/$agent" ]; then
+            rm "$LOC/agents/$agent"
+            echo "✓ Removed $LOC/agents/$agent"
+        fi
+    done
+
+    # Remove data files
+    for data in "${DATA_FILES[@]}"; do
+        if [ -f "$LOC/data/$data" ]; then
+            rm "$LOC/data/$data"
+            echo "✓ Removed $LOC/data/$data"
+        fi
+    done
+
+    # Remove skills directory
+    if [ -d "$LOC/skills/github-integration" ]; then
+        rm -rf "$LOC/skills/github-integration"
+        echo "✓ Removed $LOC/skills/github-integration/"
+    fi
+done
 
 echo ""
 echo "✓ Uninstall complete"

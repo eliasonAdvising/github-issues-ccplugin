@@ -1,6 +1,6 @@
 {
   "name": "github-issues-claude-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GitHub Issues workflow integration for Claude Code - zero-token scripts, manual issue management",
   "main": "plugin.json",
   "bin": {
